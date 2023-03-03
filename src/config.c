@@ -288,6 +288,33 @@ static void dologopt(void)
 }
 #endif
 
+int switch_high_baudrate(void)
+{
+  int n = 'I' -'A';
+  int cur_baudrate = 0;
+
+  // set baudrate to ascii file send program 
+  mpars[PROTO_BASE + n].flags |= CHANGED;
+  if (strcmp(P_BAUDRATE, "115200") == 0) {
+    sprintf(P_PPROG(n), "ascii-xfr -dsv -l 921600");
+    sprintf(P_BAUDRATE, "%d", 921600);
+    cur_baudrate = 921600;
+  } else {
+    sprintf(P_PPROG(n), "ascii-xfr -dsv -l 115200");
+    sprintf(P_BAUDRATE, "%d", 115200);
+    cur_baudrate = 115200;
+  }
+
+  if (portfd >= 0)
+    port_init();
+
+  markch(P_BAUDRATE);
+  markch(P_BITS);
+  markch(P_PARITY);
+  markch(P_STOPB);
+  return cur_baudrate;
+}
+
 static void do_menu_path(void)
 {
   WIN *w;

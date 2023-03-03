@@ -167,6 +167,7 @@ struct dialent;
 /* Global functions */
 
 /* Prototypes from file: config.c */
+int switch_high_baudrate(void);  /* switch baudrate between 115200 and 921600 */
 void read_parms(void);
 int  waccess(char *s);
 int  config(int setup);

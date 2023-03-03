@@ -37,3 +37,19 @@ To compile and install a development version:
 6. make install
 
 adam@lackorzynski.de
+
+
+------------------
+## Add HotKey for easy use mimicom to download bootloader file
+### Upload file
+> When send `*.srec` ascii file to board, I often encouter that the hotkey of Ctrl+A not being recognized by minicom, and minicom only get the character 's' which is the srec file start flag. So send file failed!
+
+So I invent hot key `Ctrl+A  ;` to call the upload function.
+
+### Add hotkey of fast switching Baudrate
+> Sometimes you need send flash_writer file to soc in 115200 baudrate, then you can change serial baudrate to 921600
+
+`Ctrl+A  9`
+
+--------------
+JerryZheng89@outlook.com

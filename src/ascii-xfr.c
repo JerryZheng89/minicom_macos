@@ -86,7 +86,7 @@ static void lineout(char const *line, int len)
       }
       if (ret == 1)
 	line++;
-      ms_delay(cdelay);
+      usleep(cdelay);
     }
   }
 }
@@ -186,7 +186,7 @@ static int asend(char *file)
     bdone += len;
     if (ldelay) {
       flush_output();
-      ms_delay(ldelay);
+      usleep(len*9*1000*1000/ldelay);
     }
     stats(first);
     first = 0;
@@ -295,7 +295,8 @@ int main(int argc, char **argv)
   if (what == 's') {
     fprintf(stderr, _("ASCII upload of \"%s\"\n"), file);
     if (cdelay || ldelay)
-      fprintf(stderr, _("Line delay: %d ms, character delay %d ms\n"),
+      //fprintf(stderr, _("Line delay: %d us, character delay %d us\n"),
+      fprintf(stderr, _("Baud: %d, character delay %d us\n"),
               ldelay, cdelay);
     fprintf(stderr, "\n");
     fflush(stderr);

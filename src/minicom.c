@@ -1698,6 +1698,14 @@ int main(int argc, char **argv)
     c = do_terminal();
 dirty_goto:
     switch (c + 32 *(c >= 'A' && c <= 'Z')) {
+      case '9': /* switch baudrate*/
+        c = switch_high_baudrate();
+        s = (c == 115200)? _("Swtich to 115200") : _("Switch to 921600");
+        status_set_display(s, 0);
+        break;
+      case ';': /* Upload */
+        updown('U', 0);
+        break;
       case 'a': /* Add line feed */
         toggle_addlf();
         s = addlf ?  _("Add linefeed ON") : _("Add linefeed OFF");
